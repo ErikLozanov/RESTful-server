@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const routes = require('./routes');
 const mongoose = require('mongoose');
+
+const routes = require('./routes');
+const {auth} = require('./middlewares/authMiddleware');
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.use(express.urlencoded({extended: false}));
 // express.json will get AJAX requests (JSON data)
 app.use(express.json());
 app.use(cors());
+app.use(auth);
 
 // app.use((req, res, next) => {
 
