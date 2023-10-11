@@ -1,7 +1,21 @@
 const router = require('express').Router();
 
-router.post('/register', (req, res) => {
-    const {email, password} = req.body;
+const userManager = require('../managers/userManager');
+
+router.post('/register',async (req, res) => {
+    try {
+        const user = await userManager.register(req.body);
+
+        res.json({
+            email: user.email,
+            accessToken: 'nqma token',
+            _id: user._id
+        })
+    } catch (err) {
+        res.status(400).json({
+            message: 'Some Error',
+        })
+    }
    
     res.end();
 });

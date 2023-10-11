@@ -1,21 +1,27 @@
 const express = require('express');
-
+const cors = require('cors');
 const routes = require('./routes');
+const mongoose = require('mongoose');
 
 const app = express();
+
+mongoose.connect('mongodb://127.0.0.1:27017/furnitures')
+.then(() => console.log('DB Connected'))
+.catch(err => console.log(err));
 
 app.use(express.urlencoded({extended: false}));
 // express.json will get AJAX requests (JSON data)
 app.use(express.json());
+app.use(cors());
 
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader('Access-Control-Allow-Headers', '*');
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', '*');
+//     res.setHeader('Access-Control-Allow-Headers', '*');
 
-    next();
-});
+//     next();
+// });
 
 
 app.get('/', (req, res) => {
