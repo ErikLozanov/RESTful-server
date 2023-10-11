@@ -16,8 +16,10 @@ router.post('/register',async (req, res) => {
             message: 'Some Error',
         })
     }
-   
-    res.end();
 });
+
+router.post('/login', async (req, res) => {
+    const user = await userManager.login(req.body);
+})
 
 module.exports = router;
