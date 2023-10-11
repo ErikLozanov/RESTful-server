@@ -3,7 +3,8 @@ const router = require("express").Router();
 const furnitureManager = require("../managers/furnitureManager");
 
 router.get('/', async (req, res) => {
-    const furnitures = await furnitureManager.getAll();
+
+    const furnitures = await furnitureManager.getAll(req.query);
 
     res.json(furnitures);
 })

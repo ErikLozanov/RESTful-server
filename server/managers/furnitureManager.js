@@ -1,6 +1,14 @@
 const Furniture = require('../models/Furniture');
 
-exports.getAll = () => Furniture.find();
+exports.getAll = async (qs) => {
+    let query = await Furniture.find();
+    console.log(qs.where);
+
+
+    const result = await Furniture.find();
+
+    return result;
+}
 
 exports.getOne = (furnitureId) => Furniture.findById(furnitureId);
 
