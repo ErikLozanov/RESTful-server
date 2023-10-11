@@ -21,7 +21,12 @@ router.post("/", async (req, res) => {
             message: 'Cannot create furniture'
         });
     }
-
 });
+
+router.get('/:furnitureId',async (req, res) => {
+    const furniture = await furnitureManager.getOne(req.params.furnitureId);
+
+    res.json(furniture);
+})
 
 module.exports = router;
